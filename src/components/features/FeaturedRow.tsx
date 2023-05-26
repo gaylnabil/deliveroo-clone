@@ -37,7 +37,7 @@ const FeaturedRow: FC<IProps> = ({ id, title, description }) => {
           address="Address of the pizza 142"
           dishes={[]}
           long={20}
-          lat={1}
+          latitude={1}
         />
         <RestaurantCard
           id={1}
@@ -49,7 +49,7 @@ const FeaturedRow: FC<IProps> = ({ id, title, description }) => {
           address="Address of the pizza 142"
           dishes={[]}
           long={20}
-          lat={1}
+          latitude={1}
         />
         <RestaurantCard
           id={1}
@@ -61,7 +61,7 @@ const FeaturedRow: FC<IProps> = ({ id, title, description }) => {
           address="Address of the pizza 142"
           dishes={[]}
           long={20}
-          lat={1}
+          latitude={1}
         />
         <RestaurantCard
           id={1}
@@ -73,7 +73,7 @@ const FeaturedRow: FC<IProps> = ({ id, title, description }) => {
           address="Address of the pizza 142"
           dishes={[]}
           long={20}
-          lat={1}
+          latitude={1}
         />
       </ScrollView>
     </View>

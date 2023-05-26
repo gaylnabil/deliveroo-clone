@@ -5,27 +5,27 @@ import { StarIcon, MapPinIcon } from "react-native-heroicons/solid";
 interface IProps {
   id: number;
   imgUrl: string;
-  short_description: string;
+  description: string;
   title: string;
   rating: number;
   genre: string;
   address: string;
   dishes: [];
   long: number;
-  lat: number;
+  latitude: number;
 }
 
 const RestaurantCard: FC<IProps> = ({
   id,
   imgUrl,
-  short_description,
+  description,
   title,
   rating,
   genre,
   address,
   dishes,
   long,
-  lat,
+  latitude,
 }) => {
   return (
     <TouchableOpacity className="bg-white mr-4 shadow">
