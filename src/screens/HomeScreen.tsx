@@ -1,5 +1,5 @@
 import { View, Text, Image, TextInput, ScrollView } from "react-native";
-import React, { FC, useLayoutEffect } from "react";
+import React, { FC, useLayoutEffect, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
@@ -11,13 +11,40 @@ import {
 import Categories from "../components/categories/Categories";
 import FeaturedRow from "../components/features/FeaturedRow";
 
+import { useAppDispatch, useAppSelector } from "../redux/store";
+import { getAllCategories, getAllFeatures } from "../redux/actions/actionThunk";
+
 const HomeScreen: FC = () => {
   const navigation = useNavigation();
+
+  const dispatch = useAppDispatch();
+  const [features, featuredSelected] = useAppSelector((state) => [
+    state.featuredStore.features,
+    state.featuredStore.featuredSelected,
+  ]);
+
+  useEffect(() => {
+    dispatch(getAllFeatures());
+    dispatch(getAllCategories());
+  }, []);
+  console.log("Features: ", features);
 
   useLayoutEffect(() => {
     // navigation.setOptions({ title: "Nabil" });
     navigation.setOptions({ headerShown: false });
   }, [navigation]);
+
+  const featuredElements = features.map((feature, index) => {
+    return (
+      <FeaturedRow
+        key={index}
+        id={index}
+        title={feature.name}
+        description={feature.description}
+        restaurants={feature.restaurants}
+      />
+    );
+  });
 
   return (
     <SafeAreaView className="bg-white pt-1 pb-1">
@@ -58,21 +85,7 @@ const HomeScreen: FC = () => {
 
         {/* Features rows */}
         {/* Features */}
-        <FeaturedRow
-          id={1}
-          title="Featured"
-          description="Paid placement from partner"
-        />
-        <FeaturedRow
-          id={2}
-          title="Tasty Discount"
-          description="Everyone is being promoted"
-        />
-        <FeaturedRow
-          id={3}
-          title="Featured"
-          description="This is how to create app with React Native"
-        />
+        {featuredElements}
       </ScrollView>
     </SafeAreaView>
   );
