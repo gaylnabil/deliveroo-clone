@@ -1,6 +1,8 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import React, { FC } from "react";
 import { StarIcon, MapPinIcon } from "react-native-heroicons/solid";
+import { Dish } from "../../redux/model";
+import { truncate } from "../../utils/util";
 
 interface IProps {
   id: number;
@@ -10,8 +12,8 @@ interface IProps {
   rating: number;
   genre: string;
   address: string;
-  dishes: [];
-  long: number;
+  dishes: Dish[];
+  longitude: number;
   latitude: number;
 }
 
@@ -24,7 +26,7 @@ const RestaurantCard: FC<IProps> = ({
   genre,
   address,
   dishes,
-  long,
+  longitude,
   latitude,
 }) => {
   return (
@@ -40,7 +42,7 @@ const RestaurantCard: FC<IProps> = ({
         </View>
         <View className="flex-row items-center py-1">
           <MapPinIcon className="" color="#00CCBB" size={20} opacity={0.5} />
-          <Text className="text-sm text-gray-500 "> {address}</Text>
+          <Text className="text-sm text-gray-500"> {truncate(address)}</Text>
         </View>
       </View>
     </TouchableOpacity>

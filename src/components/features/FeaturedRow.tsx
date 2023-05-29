@@ -1,15 +1,36 @@
 import { View, Text, ScrollView } from "react-native";
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { ArrowRightIcon } from "react-native-heroicons/outline";
 import RestaurantCard from "./../restaurants/RestaurantCard";
-
+import { Restaurant } from "../../redux/model";
+import { urlFor } from "../../redux/sanityClient/sanity";
 interface IProps {
   id: number;
   title: string;
   description: string;
+  restaurants: Restaurant[];
 }
 
-const FeaturedRow: FC<IProps> = ({ id, title, description }) => {
+const FeaturedRow: FC<IProps> = ({ id, title, description, restaurants }) => {
+  const restaurantElements = restaurants.map((rest, index) => {
+    console.log("rest._id: ", rest._id);
+    return (
+      <RestaurantCard
+        key={rest._id}
+        id={rest._id}
+        imgUrl={urlFor(rest.imgUrl).url()}
+        description={rest.description}
+        title={rest.name}
+        rating={rest.rating}
+        genre={rest.genre}
+        address={rest.address}
+        dishes={rest.dishes}
+        longitude={rest.longitude}
+        latitude={rest.latitude}
+      />
+    );
+  });
+
   return (
     <View>
       <View className="mt-4 px-4 flex-row item-center justify-between">
@@ -27,54 +48,7 @@ const FeaturedRow: FC<IProps> = ({ id, title, description }) => {
         showsHorizontalScrollIndicator={false}
       >
         {/* Restaurant Cards */}
-        <RestaurantCard
-          id={1}
-          imgUrl="https://links.papareact.com/gn7"
-          short_description="The cheese should be melted, the crust should have some crunch to it, the toppings should be well-cooked and the whole thing should be served piping hot"
-          title="Pizza"
-          rating={5}
-          genre="Italian"
-          address="Address of the pizza 142"
-          dishes={[]}
-          long={20}
-          latitude={1}
-        />
-        <RestaurantCard
-          id={1}
-          imgUrl="https://links.papareact.com/gn7"
-          short_description="The cheese should be melted, the crust should have some crunch to it, the toppings should be well-cooked and the whole thing should be served piping hot"
-          title="Pizza"
-          rating={5}
-          genre="Italian"
-          address="Address of the pizza 142"
-          dishes={[]}
-          long={20}
-          latitude={1}
-        />
-        <RestaurantCard
-          id={1}
-          imgUrl="https://links.papareact.com/gn7"
-          short_description="The cheese should be melted, the crust should have some crunch to it, the toppings should be well-cooked and the whole thing should be served piping hot"
-          title="Pizza"
-          rating={5}
-          genre="Italian"
-          address="Address of the pizza 142"
-          dishes={[]}
-          long={20}
-          latitude={1}
-        />
-        <RestaurantCard
-          id={1}
-          imgUrl="https://links.papareact.com/gn7"
-          short_description="The cheese should be melted, the crust should have some crunch to it, the toppings should be well-cooked and the whole thing should be served piping hot"
-          title="Pizza"
-          rating={5}
-          genre="Italian"
-          address="Address of the pizza 142"
-          dishes={[]}
-          long={20}
-          latitude={1}
-        />
+        {restaurantElements}
       </ScrollView>
     </View>
   );

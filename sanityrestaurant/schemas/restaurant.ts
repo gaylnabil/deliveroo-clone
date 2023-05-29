@@ -44,11 +44,11 @@ export default defineType({
       },
     }),
 
-    // defineField({
-    //   name: 'genre',
-    //   title: 'Genre',
-    //   type: 'string',
-    // }),
+    defineField({
+      name: 'genre',
+      title: 'Genre',
+      type: 'string',
+    }),
 
     defineField({
       name: 'address',
