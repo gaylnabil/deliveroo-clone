@@ -1,11 +1,32 @@
 import { View, Text } from "react-native";
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { ScrollView } from "react-native";
 import CategoryCart from "./CategoryCart";
+import { useAppDispatch, useAppSelector } from "./../../redux/store";
+import { getAllCategories } from "./../../redux/actions/actionThunk";
+import { urlFor } from "../../redux/sanityClient/sanity";
 
 interface IProps {}
 
 const Categories: FC<IProps> = (props) => {
+  const dispatch = useAppDispatch();
+  const categories = useAppSelector((state) => state.categoryStore.categories);
+
+  useEffect(() => {
+    dispatch(getAllCategories());
+  }, []);
+
+  const categoryElements = categories.map((cat) => {
+    return (
+      <CategoryCart
+        key={cat._id}
+        imgUrl={urlFor(cat.image).url()}
+        title={cat.name}
+      />
+    );
+  });
+
+  console.log("categories: ", categories);
   return (
     <ScrollView
       horizontal
@@ -16,18 +37,8 @@ const Categories: FC<IProps> = (props) => {
       }}
     >
       {/* Category Cart */}
-      <CategoryCart
-        imgUrl="https://links.papareact.com/gn7"
-        title="Category Cart 01"
-      />
-      <CategoryCart
-        imgUrl="https://links.papareact.com/gn7"
-        title="Category Cart 02"
-      />
-      <CategoryCart
-        imgUrl="https://links.papareact.com/gn7"
-        title="Category Cart 03"
-      />
+
+      {categoryElements}
     </ScrollView>
   );
 };
