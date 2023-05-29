@@ -12,8 +12,8 @@ interface IProps {
 }
 
 const FeaturedRow: FC<IProps> = ({ id, title, description, restaurants }) => {
-  const restaurantElements = restaurants.map((rest, index) => {
-    console.log("rest._id: ", rest._id);
+  const restaurantElements = restaurants?.map((rest) => {
+    console.log("rest._id: ", rest);
     return (
       <RestaurantCard
         key={rest._id}

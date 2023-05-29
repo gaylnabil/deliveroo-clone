@@ -12,7 +12,7 @@ import Categories from "../components/categories/Categories";
 import FeaturedRow from "../components/features/FeaturedRow";
 
 import { useAppDispatch, useAppSelector } from "../redux/store";
-import { getAllCategories, getAllFeatures } from "../redux/actions/actionThunk";
+import { getAllFeatures } from "./../redux/actions/actionThunk";
 
 const HomeScreen: FC = () => {
   const navigation = useNavigation();
@@ -23,22 +23,20 @@ const HomeScreen: FC = () => {
     state.featuredStore.featuredSelected,
   ]);
 
-  useEffect(() => {
-    dispatch(getAllFeatures());
-    dispatch(getAllCategories());
-  }, []);
-  console.log("Features: ", features);
-
   useLayoutEffect(() => {
     // navigation.setOptions({ title: "Nabil" });
     navigation.setOptions({ headerShown: false });
   }, [navigation]);
 
-  const featuredElements = features.map((feature, index) => {
+  useEffect(() => {
+    dispatch(getAllFeatures());
+  }, []);
+
+  const featuredElements = features.map((feature) => {
     return (
       <FeaturedRow
-        key={index}
-        id={index}
+        key={feature._id}
+        id={feature._id}
         title={feature.name}
         description={feature.description}
         restaurants={feature.restaurants}
@@ -46,6 +44,7 @@ const HomeScreen: FC = () => {
     );
   });
 
+  console.log("Features: ", features);
   return (
     <SafeAreaView className="bg-white pt-1 pb-1">
       {/* Header */}
