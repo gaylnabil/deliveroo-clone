@@ -16,7 +16,7 @@
     yarn install
 
 ### Run sanity server with:
-    npm run dev, 
+    npm run dev 
 
 Open `http://localhost:3333` to view it in your browser.
 
