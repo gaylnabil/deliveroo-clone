@@ -2,7 +2,10 @@ import { View, Text, Image, TouchableOpacity } from "react-native";
 import React, { FC } from "react";
 import { StarIcon, MapPinIcon } from "react-native-heroicons/solid";
 import { Dish } from "../../redux/model";
-import { truncate } from "../../utils/util";
+import { truncate } from "../../helpers/util";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../types/navigation";
 
 interface IProps {
   id: number;
@@ -17,6 +20,11 @@ interface IProps {
   latitude: number;
 }
 
+type RestaurantScreenNavigationType = NativeStackNavigationProp<
+  RootStackParamList,
+  "Restaurant"
+>;
+
 const RestaurantCard: FC<IProps> = ({
   id,
   imgUrl,
@@ -29,12 +37,30 @@ const RestaurantCard: FC<IProps> = ({
   longitude,
   latitude,
 }) => {
+  const navigation = useNavigation<RestaurantScreenNavigationType>();
+
   return (
-    <TouchableOpacity className="bg-white mr-4 shadow">
+    <TouchableOpacity
+      onPress={() => {
+        navigation.navigate("Restaurant", {
+          // id: id,
+          imgUrl: imgUrl,
+          description: description,
+          title: title,
+          rating: rating,
+          genre: genre,
+          address: address,
+          dishes: dishes,
+          longitude: longitude,
+          latitude: latitude,
+        });
+      }}
+      className="bg-white mr-4 shadow"
+    >
       <Image source={{ uri: imgUrl }} className="w-64 h-36 rounded-sm" />
       <View className="px-3 pb-4">
         <Text className="font-bold text-lg pt-2">{title}</Text>
-        <View className="flex-row item-center space-x-1">
+        <View className="flex-row items-center space-x-1">
           <StarIcon size={20} color="#00CCBB" opacity={0.5} />
           <Text className="text-sm text-gray-500">
             <Text className="text-green-500">{rating}</Text> - {genre}

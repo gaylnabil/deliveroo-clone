@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "react_native_deliveroo_clone",
-    "slug": "react_native_deliveroo_clone",
+    "name": "react_native_restaurant_sanity",
+    "slug": "react_native_restaurant_sanity",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

@@ -1,7 +1,7 @@
 import { View, Text } from "react-native";
 import React, { FC, useEffect } from "react";
 import { ScrollView } from "react-native";
-import CategoryCart from "./CategoryCart";
+import CategoryCard from "./CategoryCard";
 import { useAppDispatch, useAppSelector } from "./../../redux/store";
 import { getAllCategories } from "./../../redux/actions/actionThunk";
 import { urlFor } from "../../redux/sanityClient/sanity";
@@ -18,7 +18,7 @@ const Categories: FC<IProps> = (props) => {
 
   const categoryElements = categories.map((cat) => {
     return (
-      <CategoryCart
+      <CategoryCard
         key={cat._id}
         imgUrl={urlFor(cat.image).url()}
         title={cat.name}
@@ -26,7 +26,7 @@ const Categories: FC<IProps> = (props) => {
     );
   });
 
-  console.log("categories: ", categories);
+  // console.log("categories: ", categories);
   return (
     <ScrollView
       horizontal

@@ -1,5 +1,5 @@
 import { View, Text, Image, TextInput, ScrollView } from "react-native";
-import React, { FC, useLayoutEffect, useEffect } from "react";
+import React, { FC, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
@@ -13,26 +13,22 @@ import FeaturedRow from "../components/features/FeaturedRow";
 
 import { useAppDispatch, useAppSelector } from "../redux/store";
 import { getAllFeatures } from "./../redux/actions/actionThunk";
+import { hideHeader } from "../types/utils";
 
 const HomeScreen: FC = () => {
-  const navigation = useNavigation();
-
   const dispatch = useAppDispatch();
   const [features, featuredSelected] = useAppSelector((state) => [
     state.featuredStore.features,
     state.featuredStore.featuredSelected,
   ]);
 
-  useLayoutEffect(() => {
-    // navigation.setOptions({ title: "Nabil" });
-    navigation.setOptions({ headerShown: false });
-  }, [navigation]);
+  hideHeader();
 
   useEffect(() => {
     dispatch(getAllFeatures());
   }, []);
 
-  const featuredElements = features.map((feature) => {
+  const featuredElements = features.map((feature, index) => {
     return (
       <FeaturedRow
         key={feature._id}
@@ -44,7 +40,7 @@ const HomeScreen: FC = () => {
     );
   });
 
-  console.log("Features: ", features);
+  // console.log("Features: ", features);
   return (
     <SafeAreaView className="bg-white pt-1 pb-1">
       {/* Header */}
