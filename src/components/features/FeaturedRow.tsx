@@ -4,6 +4,8 @@ import { ArrowRightIcon } from "react-native-heroicons/outline";
 import RestaurantCard from "./../restaurants/RestaurantCard";
 import { Restaurant } from "../../redux/model";
 import { urlFor } from "../../redux/sanityClient/sanity";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
+import { getFeaturedRestaurants } from "../../redux/actions/actionThunk";
 interface IProps {
   id: number;
   title: string;
@@ -12,8 +14,19 @@ interface IProps {
 }
 
 const FeaturedRow: FC<IProps> = ({ id, title, description, restaurants }) => {
+  // const dispatch = useAppDispatch();
+  // const restaurants = useAppSelector(
+  //   (state) => state.restaurantStore.restaurants
+  // );
+
+  // useEffect(() => {
+  //   dispatch(getFeaturedRestaurants(id));
+  // }, [id]);
+
+  console.log("id: ", id);
+
   const restaurantElements = restaurants?.map((rest) => {
-    console.log("rest._id: ", rest);
+    // console.log("rest._id: ", rest);
     return (
       <RestaurantCard
         key={rest._id}
