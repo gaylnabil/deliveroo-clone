@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.js": "/react-native-restaurant-sanity/static/js/main.7b94bc36.js",
+    "static/js/527.836b8b72.chunk.js": "/react-native-restaurant-sanity/static/js/527.836b8b72.chunk.js",
+    "static/js/299.5cb931cf.js": "/react-native-restaurant-sanity/static/js/299.5cb931cf.js",
+    "favicon.ico": "/react-native-restaurant-sanity/favicon.ico",
+    "index.html": "/react-native-restaurant-sanity/index.html",
+    "favicon-32.png": "/react-native-restaurant-sanity/favicon-32.png",
+    "favicon-16.png": "/react-native-restaurant-sanity/favicon-16.png",
+    "manifest.json": "/react-native-restaurant-sanity/manifest.json",
+    "serve.json": "/react-native-restaurant-sanity/serve.json",
+    "main.7b94bc36.js.map": "/react-native-restaurant-sanity/static/js/main.7b94bc36.js.map",
+    "527.836b8b72.chunk.js.map": "/react-native-restaurant-sanity/static/js/527.836b8b72.chunk.js.map",
+    "299.5cb931cf.js.map": "/react-native-restaurant-sanity/static/js/299.5cb931cf.js.map"
+  },
+  "entrypoints": [
+    "static/js/299.5cb931cf.js",
+    "static/js/main.7b94bc36.js"
+  ]
+}
