@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "react_native_restaurant_sanity",
-    "slug": "react_native_restaurant_sanity",
+    "slug": "react-native-restaurant-sanity",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -25,6 +25,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "39f80820-97fc-47d6-9cb6-8de2fded06ce"
+      }
+    },
+    "owner": "gaylnabil"
   }
 }
