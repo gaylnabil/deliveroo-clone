@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream
-=======
-// import { registerRootComponent } from "expo";
-
->>>>>>> Stashed changes
+import { registerRootComponent } from "expo";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./src/screens/HomeScreen";
@@ -52,8 +48,4 @@ export default function App() {
     </Provider>
   );
 }
-<<<<<<< Updated upstream
-=======
-
-// registerRootComponent(App);
->>>>>>> Stashed changes
+registerRootComponent(App);
