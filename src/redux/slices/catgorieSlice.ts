@@ -1,6 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { Category, Featured } from "../model";
-import FeaturedRow from './../../components/features/FeaturedRow';
 
 export interface CategoryState {
     categories: Category[];

@@ -4,7 +4,7 @@ import { Dish } from "../redux/model";
 export type AppStackParamList = {
     Home: undefined;
     Restaurant: {
-      imgUrl: string;
+      image: string;
       description: string;
       title: string;
       rating: number;
@@ -14,6 +14,7 @@ export type AppStackParamList = {
       longitude: number;
       latitude: number;
     };
+    Basket: undefined;
   };
   
 export interface RootStackParamList extends AppStackParamList {}

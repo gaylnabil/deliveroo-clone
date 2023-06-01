@@ -14,7 +14,7 @@ export default defineType({
       },
     }),
     defineField({
-      name: 'imgUrl',
+      name: 'image',
       title: 'Restaurant Image URL',
       type: 'image',
       validation:(rule) =>{
@@ -96,15 +96,4 @@ export default defineType({
 
     
   ],
-
 })
-
-// imgUrl: string;
-//   short_description: string;
-//   title: string;
-//   rating: number;
-//   genre: string;
-//   address: string;
-//   dishes: [];
-//   long: number;
-//   lat: number;

@@ -4,7 +4,6 @@ import { ScrollView } from "react-native";
 import CategoryCard from "./CategoryCard";
 import { useAppDispatch, useAppSelector } from "./../../redux/store";
 import { getAllCategories } from "./../../redux/actions/actionThunk";
-import { urlFor } from "../../redux/sanityClient/sanity";
 
 interface IProps {}
 
@@ -17,13 +16,7 @@ const Categories: FC<IProps> = (props) => {
   }, []);
 
   const categoryElements = categories.map((cat) => {
-    return (
-      <CategoryCard
-        key={cat._id}
-        imgUrl={urlFor(cat.image).url()}
-        title={cat.name}
-      />
-    );
+    return <CategoryCard key={cat._id} image={cat.image} title={cat.name} />;
   });
 
   // console.log("categories: ", categories);

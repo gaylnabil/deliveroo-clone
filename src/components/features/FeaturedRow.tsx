@@ -1,13 +1,11 @@
 import { View, Text, ScrollView } from "react-native";
-import React, { FC, useEffect } from "react";
+import React, { FC, Key } from "react";
 import { ArrowRightIcon } from "react-native-heroicons/outline";
 import RestaurantCard from "./../restaurants/RestaurantCard";
 import { Restaurant } from "../../redux/model";
-import { urlFor } from "../../redux/sanityClient/sanity";
-import { useAppDispatch, useAppSelector } from "../../redux/store";
-import { getFeaturedRestaurants } from "../../redux/actions/actionThunk";
+
 interface IProps {
-  id: number;
+  id: Key | null | undefined;
   title: string;
   description: string;
   restaurants: Restaurant[];
@@ -31,7 +29,7 @@ const FeaturedRow: FC<IProps> = ({ id, title, description, restaurants }) => {
       <RestaurantCard
         key={rest._id}
         id={rest._id}
-        imgUrl={urlFor(rest.imgUrl).url()}
+        image={rest.image}
         description={rest.description}
         title={rest.name}
         rating={rest.rating}
