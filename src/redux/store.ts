@@ -4,6 +4,7 @@ import { categoryReducer } from "./slices/catgorieSlice";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import thunk from 'redux-thunk';
 import { restaurantReducer } from "./slices/restaurantSlice";
+import { basketReducer } from "./slices/basketSlice";
 // Configure and return service decorator store. This is a wrapper around configureStore ()
 
 export const store = configureStore({
@@ -11,6 +12,7 @@ export const store = configureStore({
     featuredStore: featuredReducer,
     categoryStore: categoryReducer,
     restaurantStore: restaurantReducer,
+    basketStore: basketReducer
   },
   devTools: process.env.NODE_ENV !== 'production',
   // Adding the api middleware enables caching, invalidation, polling,

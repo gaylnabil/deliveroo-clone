@@ -1,6 +1,5 @@
 import { View, Text, Image, TextInput, ScrollView } from "react-native";
 import React, { FC, useEffect } from "react";
-import { useNavigation } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
   ChevronDownIcon,
@@ -28,7 +27,7 @@ const HomeScreen: FC = () => {
     dispatch(getAllFeatures());
   }, []);
 
-  const featuredElements = features.map((feature, index) => {
+  const featuredElements = features.map((feature) => {
     return (
       <FeaturedRow
         key={feature._id}

@@ -1,3 +1,5 @@
+import { Key } from "react";
+
 interface Category{
     name: string;
     image: string;
@@ -5,6 +7,7 @@ interface Category{
 
 }
 interface Dish{
+    _id: Key | null | undefined;
     name: string;
     image: string;
     description: string;
@@ -12,8 +15,9 @@ interface Dish{
 }
 
 interface Restaurant{
+    _id: Key | null | undefined;
     name: string;
-    imgUrl: string;
+    image: string;
     description: string;
     rating: number;
     genre: string;
@@ -25,6 +29,7 @@ interface Restaurant{
 }
 
 interface Featured{
+    _id: Key | null | undefined;
     name: string;
     description: string;
     restaurants: Restaurant[]

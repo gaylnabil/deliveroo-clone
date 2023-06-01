@@ -1,5 +1,4 @@
 import { registerRootComponent } from "expo";
-
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./src/screens/HomeScreen";
@@ -12,6 +11,7 @@ import { RootStackParamList } from "./src/types/navigation";
 import { Platform } from "react-native";
 
 import { setupURLPolyfill } from "react-native-url-polyfill";
+import BasketScreen from "./src/screens/BasketScreen";
 
 if (Platform.OS !== "web") {
   setupURLPolyfill();
@@ -34,10 +34,18 @@ export default function App() {
             // options={{ title: "Title" }}
           />
           <Stack.Screen name="Restaurant" component={RestaurantScreen} />
+          <Stack.Screen
+            name="Basket"
+            component={BasketScreen}
+            options={{
+              title: "Basket",
+              presentation: "modal",
+              headerShown: false,
+            }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
   );
 }
-
 registerRootComponent(App);

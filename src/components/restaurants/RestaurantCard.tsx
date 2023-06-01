@@ -1,15 +1,16 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
-import React, { FC } from "react";
+import React, { FC, Key } from "react";
 import { StarIcon, MapPinIcon } from "react-native-heroicons/solid";
 import { Dish } from "../../redux/model";
 import { truncate } from "../../helpers/util";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../types/navigation";
+import { urlFor } from "../../redux/sanityClient/sanity";
 
 interface IProps {
-  id: number;
-  imgUrl: string;
+  id: Key | null | undefined;
+  image: string;
   description: string;
   title: string;
   rating: number;
@@ -27,7 +28,7 @@ type RestaurantScreenNavigationType = NativeStackNavigationProp<
 
 const RestaurantCard: FC<IProps> = ({
   id,
-  imgUrl,
+  image,
   description,
   title,
   rating,
@@ -44,7 +45,7 @@ const RestaurantCard: FC<IProps> = ({
       onPress={() => {
         navigation.navigate("Restaurant", {
           // id: id,
-          imgUrl: imgUrl,
+          image: image,
           description: description,
           title: title,
           rating: rating,
@@ -57,7 +58,10 @@ const RestaurantCard: FC<IProps> = ({
       }}
       className="bg-white mr-4 shadow"
     >
-      <Image source={{ uri: imgUrl }} className="w-64 h-36 rounded-sm" />
+      <Image
+        source={{ uri: urlFor(image).url() }}
+        className="w-64 h-36 rounded-sm"
+      />
       <View className="px-3 pb-4">
         <Text className="font-bold text-lg pt-2">{title}</Text>
         <View className="flex-row items-center space-x-1">

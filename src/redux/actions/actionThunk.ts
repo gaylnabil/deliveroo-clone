@@ -65,7 +65,7 @@ export const getFeaturedRestaurants = (id: number): ThunkAction<Promise<void>, R
             rating,
             genre,
             address,
-            imgUrl,        
+            image,        
           }
         }`
         const params = {id: id}
