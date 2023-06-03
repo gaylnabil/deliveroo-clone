@@ -1,5 +1,5 @@
 import { View, Text, ScrollView, Image, TouchableOpacity } from "react-native";
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { RootStackParamList } from "./../types/navigation";
 import { hideHeader } from "./../types/utils";
@@ -12,7 +12,9 @@ import {
 } from "react-native-heroicons/solid";
 import DishRow from "./../components/dishes/DishRow";
 import { urlFor } from "./../redux/sanityClient/sanity";
-import ModalBasketBottom from "./../components/modals/ModalBasketBottom";
+import BasketCart from "../components/baskets/BasketCart";
+import { useAppDispatch, useAppSelector } from "./../redux/store";
+import { setRestaurant } from "../redux/slices/restaurantSlice";
 
 export type RestaurantScreenRouteType = RouteProp<
   RootStackParamList,
@@ -21,23 +23,45 @@ export type RestaurantScreenRouteType = RouteProp<
 
 const RestaurantScreen: FC = () => {
   const navigation = useNavigation();
-
+  const dispatch = useAppDispatch();
+  const restaurant = useAppSelector(
+    (state) => state.restaurantStore.restaurantSelected
+  );
   const {
     params: {
-      // id,
+      id,
       image,
       description,
-      title,
+      name,
       rating,
       genre,
       address,
       dishes,
       longitude,
       latitude,
+      type,
     },
   } = useRoute<RestaurantScreenRouteType>();
 
   hideHeader();
+
+  useEffect(() => {
+    dispatch(
+      setRestaurant({
+        _id: id,
+        image,
+        description,
+        name,
+        rating,
+        genre,
+        address,
+        dishes,
+        longitude,
+        latitude,
+        type,
+      })
+    );
+  }, [dispatch]);
 
   return (
     <>
@@ -59,7 +83,7 @@ const RestaurantScreen: FC = () => {
 
         <View className="bg-white pt-4">
           <View className="pb-4 px-4">
-            <Text className="font-bold text-2xl pt-1 pb-2">{title}</Text>
+            <Text className="font-bold text-2xl pt-1 pb-2">{name}</Text>
 
             <View className="flex-row items-center space-x-1">
               <View className="flex-row items-center space-x-1 mr-1">
@@ -98,7 +122,7 @@ const RestaurantScreen: FC = () => {
         </View>
 
         {/* Dishes */}
-        <View className="pb-32">
+        <View className="pb-36">
           {dishes.map((dish, index) => {
             return (
               <DishRow
@@ -113,7 +137,9 @@ const RestaurantScreen: FC = () => {
           })}
         </View>
       </ScrollView>
-      <ModalBasketBottom />
+
+      {/* Modal Basket Cart */}
+      <BasketCart />
     </>
   );
 };

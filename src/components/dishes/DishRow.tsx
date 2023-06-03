@@ -11,7 +11,8 @@ import { urlFor } from "./../../redux/sanityClient/sanity";
 import { USD } from "../../helpers/util";
 
 interface IProps {
-  id: Key | null | undefined;
+  // id: Key | null | undefined;
+  id: Key;
   title: string;
   description: string;
   image: string;
@@ -37,7 +38,8 @@ const DishRow: FC<IProps> = ({ id, title, description, image, price }) => {
     );
   };
 
-  const removeBasket = (id: Key | null | undefined) => {
+  const removeBasket = (id: Key) => {
+    // const removeBasket = (id: Key | null | undefined) => {
     dispatch(removeFromBasket(id));
   };
 

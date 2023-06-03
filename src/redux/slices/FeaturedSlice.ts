@@ -10,6 +10,7 @@ export interface FeaturedState {
 const initialState: FeaturedState = {
     features:[],
     featuredSelected: {
+        _id: "",
         name: "",
         description: "",
         restaurants:[]
@@ -23,11 +24,11 @@ const featuredSlice = createSlice({
         setFeatures: (state, action: PayloadAction<Featured[]>) =>{
          state.features = action.payload
         },
-        getFeatured: (state, action: PayloadAction<Featured>) =>{
+        setFeatured: (state, action: PayloadAction<Featured>) =>{
          state.featuredSelected = action.payload
         },
 }
 })
 
-export const { setFeatures, getFeatured } = featuredSlice.actions;
+export const { setFeatures, setFeatured } = featuredSlice.actions;
 export const featuredReducer = featuredSlice.reducer;

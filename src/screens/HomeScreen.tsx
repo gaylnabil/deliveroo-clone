@@ -16,10 +16,7 @@ import { hideHeader } from "../types/utils";
 
 const HomeScreen: FC = () => {
   const dispatch = useAppDispatch();
-  const [features, featuredSelected] = useAppSelector((state) => [
-    state.featuredStore.features,
-    state.featuredStore.featuredSelected,
-  ]);
+  const features = useAppSelector((state) => state.featuredStore.features);
 
   hideHeader();
 
@@ -27,12 +24,13 @@ const HomeScreen: FC = () => {
     dispatch(getAllFeatures());
   }, []);
 
-  const featuredElements = features.map((feature) => {
+  const featuredElements = features?.map((feature) => {
+    // console.log("Nabil Feature: ", feature._id);
     return (
       <FeaturedRow
         key={feature._id}
         id={feature._id}
-        title={feature.name}
+        name={feature.name}
         description={feature.description}
         restaurants={feature.restaurants}
       />
