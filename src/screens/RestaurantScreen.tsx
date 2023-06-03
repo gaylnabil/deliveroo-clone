@@ -1,7 +1,6 @@
 import { View, Text, ScrollView, Image, TouchableOpacity } from "react-native";
 import React, { FC, useEffect } from "react";
-import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
-import { RootStackParamList } from "./../types/navigation";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { hideHeader } from "./../types/utils";
 import {
   ArrowLeftCircleIcon,
@@ -15,11 +14,7 @@ import { urlFor } from "./../redux/sanityClient/sanity";
 import BasketCart from "../components/baskets/BasketCart";
 import { useAppDispatch, useAppSelector } from "./../redux/store";
 import { setRestaurant } from "../redux/slices/restaurantSlice";
-
-export type RestaurantScreenRouteType = RouteProp<
-  RootStackParamList,
-  "Restaurant"
->;
+import { RestaurantScreenRouteType } from "../types/navigation";
 
 const RestaurantScreen: FC = () => {
   const navigation = useNavigation();

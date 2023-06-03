@@ -3,15 +3,9 @@ import React, { Component, FC } from "react";
 import { useAppSelector } from "../../redux/store";
 import { USD } from "../../helpers/util";
 import { useNavigation } from "@react-navigation/native";
-import { RootStackParamList } from "../../types/navigation";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { BasketScreenNavigationType } from "../../types/navigation";
 
 interface IProps {}
-
-type BasketScreenNavigationType = NativeStackNavigationProp<
-  RootStackParamList,
-  "Basket"
->;
 
 const BasketCart: FC<IProps> = (props) => {
   const baskets = useAppSelector((state) => state.basketStore.items);

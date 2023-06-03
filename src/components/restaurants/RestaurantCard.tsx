@@ -4,9 +4,8 @@ import { StarIcon, MapPinIcon } from "react-native-heroicons/solid";
 import { Category, Dish } from "../../redux/model";
 import { truncate } from "../../helpers/util";
 import { useNavigation } from "@react-navigation/native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../../types/navigation";
 import { urlFor } from "../../redux/sanityClient/sanity";
+import { ScreenNavigationType } from "../../types/navigation";
 
 interface IProps {
   id: Key;
@@ -22,11 +21,6 @@ interface IProps {
   type: Category;
 }
 
-type RestaurantScreenNavigationType = NativeStackNavigationProp<
-  RootStackParamList,
-  "Restaurant"
->;
-
 const RestaurantCard: FC<IProps> = ({
   id,
   image,
@@ -40,7 +34,7 @@ const RestaurantCard: FC<IProps> = ({
   latitude,
   type,
 }) => {
-  const navigation = useNavigation<RestaurantScreenNavigationType>();
+  const navigation = useNavigation<ScreenNavigationType>();
 
   return (
     <TouchableOpacity
