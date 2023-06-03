@@ -19,14 +19,13 @@ import { Dish } from "../redux/model";
 import { urlFor } from "../redux/sanityClient/sanity";
 import { USD } from "../helpers/util";
 import { removeFromBasket } from "../redux/slices/basketSlice";
+import { ScreenNavigationType } from "../types/navigation";
 
 interface IProps {}
 
 const BasketScreen: FC<IProps> = (props) => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<ScreenNavigationType>();
   const baskets = useAppSelector((state) => state.basketStore.items);
-
-  if (baskets.length === 0) navigation.goBack();
 
   const dispatch = useAppDispatch();
   const restaurant = useAppSelector(
@@ -54,6 +53,7 @@ const BasketScreen: FC<IProps> = (props) => {
     dispatch(removeFromBasket(id));
   };
   // console.log(process.env.PUBLIC_URL);
+
   return (
     <SafeAreaView className="flex-1 bg-gray-100">
       <View className="bg-white flex-row items-center py-6 border-b border-[#00CCBB] relative">
@@ -132,7 +132,15 @@ const BasketScreen: FC<IProps> = (props) => {
             <Text className="text-lg font-bold">Total</Text>
             <Text className="text-lg font-bold">{USD.format(total)}</Text>
           </View>
-          <TouchableOpacity className="bg-[#00CCBB] p-3 rounded-lg my-1">
+          <TouchableOpacity
+            disabled={baskets.length === 0}
+            onPress={() => {
+              navigation.navigate("PreparingOrder");
+            }}
+            className={`p-3 rounded-lg my-1 ${
+              baskets.length === 0 ? `bg-gray-500` : `bg-[#00CCBB]`
+            }`}
+          >
             <Text className="text-white font-bold text-lg text-center">
               Order
             </Text>

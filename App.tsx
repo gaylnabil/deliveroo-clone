@@ -12,6 +12,8 @@ import { Platform } from "react-native";
 
 import { setupURLPolyfill } from "react-native-url-polyfill";
 import BasketScreen from "./src/screens/BasketScreen";
+import PreparingOrderScreen from "./src/screens/PreparingOrderScreen";
+// import DeliveryScreen from "./src/screens/DeliveryScreen";
 
 if (Platform.OS !== "web") {
   setupURLPolyfill();
@@ -43,6 +45,24 @@ export default function App() {
               headerShown: false,
             }}
           />
+          <Stack.Screen
+            name="PreparingOrder"
+            component={PreparingOrderScreen}
+            options={{
+              title: "Preparing Order",
+              presentation: "fullScreenModal",
+              headerShown: false,
+            }}
+          />
+          {/* <Stack.Screen
+            name="Delivery"
+            component={DeliveryScreen}
+            options={{
+              title: "Delivery",
+              presentation: "fullScreenModal",
+              headerShown: false,
+            }}
+          /> */}
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
