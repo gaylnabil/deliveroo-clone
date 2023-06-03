@@ -72,10 +72,9 @@ const BasketScreen: FC<IProps> = (props) => {
       </View>
       <View className="bg-white flex-row space-x-4 items-center p-4 mt-4 border-y border-gray-200 ">
         <Image
-          // source={{ uri: urlFor(restaurant.image).url() }}
           source={require("./../images/delivery-scooter.png")}
           style={{ width: 7, height: 7, resizeMode: "center" }}
-          className="bg-gray-100 p-4 rounded-full border border-gray-200"
+          className="bg-gray-100 p-4 rounded-full"
         />
 
         <Text className="flex-1 text-gray-500">Deliver in 55-75 min</Text>
@@ -100,7 +99,7 @@ const BasketScreen: FC<IProps> = (props) => {
                 source={{
                   uri: urlFor(dish.image).url(),
                 }}
-                className="w-7 h-7 bg-gray-100 p-4 rounded-full border border-gray-400"
+                className="w-7 h-7 bg-gray-100 p-4 rounded-full"
               />
               <Text className="flex-1 text-gray-500 pl-1">{dish.name}</Text>
               <Text className="text-gray-500 pr-1">
