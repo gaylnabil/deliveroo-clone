@@ -3,16 +3,29 @@ import { Restaurant } from "../model";
 
 export interface RestaurantState {
     restaurants: Restaurant[];
-    // restaurantSelected: Restaurant;
+    restaurantSelected: Restaurant;
 }
 
 const initialState: RestaurantState = {
     restaurants:[],
-    // restaurantSelected: {
-    //     name: "",
-    //     description: "",
-    //     restaurants:[]
-    // }
+    restaurantSelected: {
+        _id: "",
+        name: "",
+        image: "",
+        description: "",
+        rating: 0,
+        genre: "",
+        address: "",
+        dishes: [],
+        longitude: 0,
+        latitude: 0,
+        type: {
+            _id: "",
+            name: "",
+            image: "",
+            description: "",
+        },
+    }
 }
 
 const restaurantSlice = createSlice({
@@ -22,11 +35,11 @@ const restaurantSlice = createSlice({
         setRestaurants: (state, action: PayloadAction<Restaurant[]>) =>{
          state.restaurants = action.payload
         },
-        // getRestaurant: (state, action: PayloadAction<Restaurant>) =>{
-        //  state.restaurantSelected = action.payload
-        // },
+        setRestaurant: (state, action: PayloadAction<Restaurant>) =>{
+         state.restaurantSelected = action.payload
+        },
 }
 })
 
-export const { setRestaurants } = restaurantSlice.actions;
+export const { setRestaurants, setRestaurant } = restaurantSlice.actions;
 export const restaurantReducer = restaurantSlice.reducer;

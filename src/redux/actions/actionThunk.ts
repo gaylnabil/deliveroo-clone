@@ -1,11 +1,12 @@
 import { Dispatch } from 'redux';
-import { setFeatures } from '../slices/FeaturedSlice';
+import { setFeatured, setFeatures } from '../slices/FeaturedSlice';
 import client from '../sanityClient/sanity';
 import { AnyAction, PayloadAction, ThunkAction } from '@reduxjs/toolkit';
 import { Category, Featured, Restaurant } from '../model';
 import { setCategories } from '../slices/catgorieSlice';
 import { RootState } from '../store';
 import { setRestaurants } from '../slices/restaurantSlice';
+import { Key } from 'react';
 
 export const getAllFeatures = (): ThunkAction<Promise<void>, RootState, unknown, PayloadAction<Featured[]>> =>{
     
@@ -53,26 +54,35 @@ export const getAllRestaurants = (id: number): ThunkAction<Promise<void>, RootSt
   )
 }
 
-export const getFeaturedRestaurants = (id: number): ThunkAction<Promise<void>, RootState, unknown, PayloadAction<Restaurant[]>> =>{
-    
+export const getFeatured = (id: Key /*Key | null | undefined */): ThunkAction<Promise<void>, RootState, unknown, PayloadAction<Restaurant[]>> =>{
+  // console.log("getFeatured: ", id)
   return ( 
     async(dispatch: Dispatch) =>{
       try {
-        const query = `*[_type == "featured" && _id == $id] {
+        const query = `
+        *[_type == "featured" && _id == $id] {
+          ...,
           restaurants[] -> {
-            _id,
-            name,
-            rating,
-            genre,
-            address,
-            image,        
-          }
-        }`
+           ...,
+           dishes[] ->,
+           type->{
+               ...,
+           },
+         }
+       }[0]
+        `
         const params = {id: id}
-        const restaurants = await client.fetch(query, params)
-        dispatch(setRestaurants(restaurants))
+        const featured = await client.fetch(query, params)
+        dispatch(setFeatured(featured))
+        console.log(`getFeatured:`, featured)
       } catch (error) {
-        dispatch(setRestaurants([]))
+
+        dispatch(setFeatured({ 
+          _id: "",
+          name: "",
+          description: "",
+          restaurants:[]
+        }))
         console.error("error: ", error)
 
       }
@@ -80,7 +90,6 @@ export const getFeaturedRestaurants = (id: number): ThunkAction<Promise<void>, R
   )
 }
 
-// export const getAllCategories = (): ThunkAction<Promise<void>, CategoryState, undefined, PayloadAction<Category[]>> =>{
 // export const getAllCategories = (): ThunkAction<void, RootState, unknown, AnyAction> =>{
   export const getAllCategories = (): ThunkAction<Promise<void>, RootState, unknown, PayloadAction<Category[]>> =>{
     

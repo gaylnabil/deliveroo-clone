@@ -1,13 +1,16 @@
 import { Key } from "react";
 
 interface Category{
+    // _id: Key | null | undefined;
+    _id: Key;
     name: string;
     image: string;
     description: string;
 
 }
 interface Dish{
-    _id: Key | null | undefined;
+    // _id: Key | null | undefined;
+    _id: Key;
     name: string;
     image: string;
     description: string;
@@ -15,7 +18,8 @@ interface Dish{
 }
 
 interface Restaurant{
-    _id: Key | null | undefined;
+    // _id: Key | null | undefined;
+    _id: Key;
     name: string;
     image: string;
     description: string;
@@ -29,7 +33,8 @@ interface Restaurant{
 }
 
 interface Featured{
-    _id: Key | null | undefined;
+    // _id: Key | null | undefined;
+    _id: Key;
     name: string;
     description: string;
     restaurants: Restaurant[]
