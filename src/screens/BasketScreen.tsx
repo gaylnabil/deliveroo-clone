@@ -84,33 +84,35 @@ const BasketScreen: FC<IProps> = (props) => {
       </View>
 
       <ScrollView className="mt-4 divide-y divide-gray-200 border-y border-gray-200">
-        {Object.entries(groupeItemsInBaskets).map(([key, items]) => {
-          const dishes = items as Dish[];
-          const dish = dishes[0];
-          return (
-            <View
-              key={key}
-              className="bg-white flex-row space-x-1 items-center p-4"
-            >
-              <Text className="text-[#00CCBB] font-bold">
-                {dishes.length} x
-              </Text>
-              <Image
-                source={{
-                  uri: urlFor(dish.image).url(),
-                }}
-                className="w-7 h-7 bg-gray-100 p-4 rounded-full"
-              />
-              <Text className="flex-1 text-gray-500 pl-1">{dish.name}</Text>
-              <Text className="text-gray-500 pr-1">
-                {USD.format(dish.price)}
-              </Text>
-              <TouchableOpacity onPress={() => removeBasket(dish._id)}>
-                <TrashIcon size={20} color="#00CCBB" />
-              </TouchableOpacity>
-            </View>
-          );
-        })}
+        <View className="pb-1">
+          {Object.entries(groupeItemsInBaskets).map(([key, items]) => {
+            const dishes = items as Dish[];
+            const dish = dishes[0];
+            return (
+              <View
+                key={key}
+                className="bg-white flex-row space-x-1 items-center p-4"
+              >
+                <Text className="text-[#00CCBB] font-bold">
+                  {dishes.length} x
+                </Text>
+                <Image
+                  source={{
+                    uri: urlFor(dish.image).url(),
+                  }}
+                  className="w-7 h-7 bg-gray-100 p-4 rounded-full"
+                />
+                <Text className="flex-1 text-gray-500 pl-1">{dish.name}</Text>
+                <Text className="text-gray-500 pr-1">
+                  {USD.format(dish.price)}
+                </Text>
+                <TouchableOpacity onPress={() => removeBasket(dish._id)}>
+                  <TrashIcon size={20} color="#00CCBB" />
+                </TouchableOpacity>
+              </View>
+            );
+          })}
+        </View>
       </ScrollView>
       <View>
         <View className="bg-white p-4">
