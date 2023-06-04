@@ -13,7 +13,7 @@ import { Platform } from "react-native";
 import { setupURLPolyfill } from "react-native-url-polyfill";
 import BasketScreen from "./src/screens/BasketScreen";
 import PreparingOrderScreen from "./src/screens/PreparingOrderScreen";
-// import DeliveryScreen from "./src/screens/DeliveryScreen";
+import DeliveryScreen from "./src/screens/DeliveryScreen";
 
 if (Platform.OS !== "web") {
   setupURLPolyfill();
@@ -54,7 +54,7 @@ export default function App() {
               headerShown: false,
             }}
           />
-          {/* <Stack.Screen
+          <Stack.Screen
             name="Delivery"
             component={DeliveryScreen}
             options={{
@@ -62,7 +62,7 @@ export default function App() {
               presentation: "fullScreenModal",
               headerShown: false,
             }}
-          /> */}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

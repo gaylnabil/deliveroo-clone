@@ -3,14 +3,14 @@ import React, { Component, FC } from "react";
 import { useAppSelector } from "../../redux/store";
 import { USD } from "../../helpers/util";
 import { useNavigation } from "@react-navigation/native";
-import { BasketScreenNavigationType } from "../../types/navigation";
+import { ScreenNavigationType } from "../../types/navigation";
 
 interface IProps {}
 
 const BasketCart: FC<IProps> = (props) => {
   const baskets = useAppSelector((state) => state.basketStore.items);
   const subTotalPrice = baskets.reduce((total, item) => total + item.price, 0);
-  const navigation = useNavigation<BasketScreenNavigationType>();
+  const navigation = useNavigation<ScreenNavigationType>();
 
   // Hide BasketCart Component if baskets array is empty
   if (baskets.length === 0) return null;

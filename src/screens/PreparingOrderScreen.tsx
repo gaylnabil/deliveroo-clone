@@ -16,13 +16,14 @@ interface IProps {}
 
 const PreparingOrderScreen: FC<IProps> = (props) => {
   const navigation = useNavigation<ScreenNavigationType>();
+
   const [index, setIndex] = useState<number>(0);
-  //   useEffect(() => {
-  //     setTimeout(() => {
-  //       setIndex(index + 1);
-  //       navigation.navigate("Delivery");
-  //     }, 4000);
-  //   }, []);
+  useEffect(() => {
+    setTimeout(() => {
+      setIndex(index + 1);
+      navigation.navigate("Delivery");
+    }, 1000);
+  }, []);
 
   return (
     <SafeAreaView className="relative bg-[#00CCBB] flex-1 items-center justify-center content-center">
