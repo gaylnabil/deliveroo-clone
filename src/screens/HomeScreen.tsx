@@ -1,4 +1,11 @@
-import { View, Text, Image, TextInput, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  TextInput,
+  ScrollView,
+  RefreshControl,
+} from "react-native";
 import React, { FC, useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
@@ -11,18 +18,47 @@ import Categories from "../components/categories/Categories";
 import FeaturedRow from "../components/features/FeaturedRow";
 
 import { useAppDispatch, useAppSelector } from "../redux/store";
-import { getAllFeatures } from "./../redux/actions/actionThunk";
+import {
+  getAllCategories,
+  getAllFeatures,
+} from "./../redux/actions/actionThunk";
 import { hideHeader } from "../types/utils";
+import { setFeatures } from "../redux/slices/FeaturedSlice";
+import { setCategories } from "../redux/slices/catgorieSlice";
 
 const HomeScreen: FC = () => {
   const dispatch = useAppDispatch();
   const features = useAppSelector((state) => state.featuredStore.features);
+  const [refreshing, setRefreshing] = React.useState(false);
 
   hideHeader();
+
+  const clearData = () => {
+    dispatch(setCategories([]));
+    dispatch(setFeatures([]));
+  };
+
+  const getData = () => {
+    dispatch(getAllCategories());
+    dispatch(getAllFeatures());
+  };
 
   useEffect(() => {
     dispatch(getAllFeatures());
   }, []);
+
+  const onRefresh = () => {
+    setRefreshing(true);
+
+    setTimeout(() => {
+      clearData();
+    }, 1800);
+    setTimeout(() => {
+      clearData();
+      getData();
+      setRefreshing(false);
+    }, 2000);
+  };
 
   const featuredElements = features?.map((feature) => {
     // console.log("Nabil Feature: ", feature._id);
@@ -71,7 +107,12 @@ const HomeScreen: FC = () => {
       </View>
 
       {/* Body */}
-      <ScrollView className="bg-gray-100">
+      <ScrollView
+        className="bg-gray-100"
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+      >
         {/* Categories */}
         <Categories />
 

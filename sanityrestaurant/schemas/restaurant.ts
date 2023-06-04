@@ -69,6 +69,12 @@ export default defineType({
         to: [{type: "dish",}]
       }],
     }),
+    
+    defineField({
+      name: 'latitude',
+      title: 'Latitude of the Restaurant',
+      type: 'number',
+    }),
 
     defineField({
       name: 'longitude',
@@ -76,11 +82,6 @@ export default defineType({
       type: 'number',
     }),
 
-    defineField({
-      name: 'latitude',
-      title: 'Latitude of the Restaurant',
-      type: 'number',
-    }),
 
     defineField({
       name: 'type',

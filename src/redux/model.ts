@@ -27,8 +27,8 @@ interface Restaurant{
     genre: string;
     address: string;
     dishes: Dish[];
-    longitude: number;
     latitude: number;
+    longitude: number;
     type: Category;
 }
 
