@@ -59,7 +59,7 @@ const DishRow: FC<IProps> = ({ id, title, description, image, price }) => {
             {description}
           </Text>
           <View className="flex-row items-center pt-3">
-            <CurrencyDollarIcon color="#00CCBB" size={20} />
+            <CurrencyDollarIcon color="#0081CC" size={20} />
             <Text className="text-base text-gray-500 font-bold pl-1">
               {USD.format(price)}
             </Text>
@@ -81,7 +81,7 @@ const DishRow: FC<IProps> = ({ id, title, description, image, price }) => {
           >
             <MinusCircleIcon
               size={38}
-              color={selectedBasketItems.length > 0 ? "#00CCBB" : "gray"}
+              color={selectedBasketItems.length > 0 ? "#0081CC" : "gray"}
             />
           </TouchableOpacity>
           <Text className="text-lg font-bold">
@@ -92,7 +92,7 @@ const DishRow: FC<IProps> = ({ id, title, description, image, price }) => {
               addBasket();
             }}
           >
-            <PlusCircleIcon size={38} color="#00CCBB" />
+            <PlusCircleIcon size={38} color="#0081CC" />
           </TouchableOpacity>
         </View>
       )}

@@ -8,7 +8,7 @@ import {
 import React, { FC } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { PhoneIcon, XMarkIcon } from "react-native-heroicons/solid";
-import { ScreenNavigationType } from "../types/navigation";
+import { ScreenNavigationType } from "../helpers/navigation";
 import * as Progress from "react-native-progress";
 import MapView, { Marker } from "react-native-maps";
 import { useAppSelector } from "../redux/store";
@@ -25,7 +25,7 @@ const DeliveryScreen: FC<IProps> = (props) => {
   console.log("Restaurant Delivery: ", restaurant);
 
   return (
-    <View className="bg-[#00CCBB] flex-1">
+    <View className="bg-[#0081CC] flex-1">
       <SafeAreaView className="z-50">
         <View className="flex-row items-center justify-between p-5">
           <TouchableOpacity
@@ -56,7 +56,7 @@ const DeliveryScreen: FC<IProps> = (props) => {
             className="my-1"
             progress={0.3}
             width={200}
-            color={"#00CCBB"}
+            color={"#0081CC"}
             indeterminate={true}
           />
           <Text className="text-gray-500 py-1 text-sm">
@@ -83,7 +83,7 @@ const DeliveryScreen: FC<IProps> = (props) => {
           title={restaurant.name}
           description={restaurant.description}
           identifier={"origin"}
-          pinColor={"#00CCBB"}
+          pinColor={"#0081CC"}
         />
       </MapView>
 
@@ -100,7 +100,7 @@ const DeliveryScreen: FC<IProps> = (props) => {
               <Text className="text-gray-500 text-xs">Your Rider</Text>
             </View>
           </View>
-          <PhoneIcon size={20} color="#00CCBB" />
+          <PhoneIcon size={20} color="#0081CC" />
         </View>
       </SafeAreaView>
     </View>

@@ -1,7 +1,6 @@
 import { View, Text, ScrollView, Image, TouchableOpacity } from "react-native";
 import React, { FC, useEffect } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { hideHeader } from "./../types/utils";
 import {
   ArrowLeftCircleIcon,
   ChevronRightIcon,
@@ -14,7 +13,8 @@ import { urlFor } from "./../redux/sanityClient/sanity";
 import BasketCart from "../components/baskets/BasketCart";
 import { useAppDispatch, useAppSelector } from "./../redux/store";
 import { setRestaurant } from "../redux/slices/restaurantSlice";
-import { RestaurantScreenRouteType } from "../types/navigation";
+import { RestaurantScreenRouteType } from "../helpers/navigation";
+import { hideHeader } from "../helpers/util";
 
 const RestaurantScreen: FC = () => {
   const navigation = useNavigation();
@@ -72,7 +72,7 @@ const RestaurantScreen: FC = () => {
             }}
             className="absolute top-12 left-5 bg-gray-100 rounded-full"
           >
-            <ArrowLeftCircleIcon size={42} color="#00CCBB" />
+            <ArrowLeftCircleIcon size={42} color="#0081CC" />
           </TouchableOpacity>
         </View>
 
@@ -82,16 +82,16 @@ const RestaurantScreen: FC = () => {
 
             <View className="flex-row items-center space-x-1">
               <View className="flex-row items-center space-x-1 mr-1">
-                <StarIcon size={20} color="#00CCBB" opacity={0.5} />
+                <StarIcon size={20} color="#0081CC" opacity={0.5} />
                 <Text className="text-sx text-gray-500">
-                  <Text className="text-green-500">{rating}</Text> - {genre}
+                  <Text className="text-[#0081CC]">{rating}</Text> - {genre}
                 </Text>
               </View>
             </View>
             <View className="flex-row items-start space-x-1 mt-2">
               <MapPinIcon
                 className=""
-                color="#00CCBB"
+                color="#0081CC"
                 size={20}
                 opacity={0.5}
               />
@@ -109,7 +109,7 @@ const RestaurantScreen: FC = () => {
             <Text className="text-base font-bold flex-1 pl-2 text-gray-800">
               You have food allergy?
             </Text>
-            <ChevronRightIcon size={25} color="#00CCBB" />
+            <ChevronRightIcon size={25} color="#0081CC" />
           </TouchableOpacity>
         </View>
         <View className="">

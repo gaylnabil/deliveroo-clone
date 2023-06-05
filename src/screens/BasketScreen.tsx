@@ -19,7 +19,7 @@ import { Dish } from "../redux/model";
 import { urlFor } from "../redux/sanityClient/sanity";
 import { USD } from "../helpers/util";
 import { removeFromBasket } from "../redux/slices/basketSlice";
-import { ScreenNavigationType } from "../types/navigation";
+import { ScreenNavigationType } from "../helpers/navigation";
 
 interface IProps {}
 
@@ -56,7 +56,7 @@ const BasketScreen: FC<IProps> = (props) => {
 
   return (
     <SafeAreaView className="flex-1 bg-gray-100">
-      <View className="bg-white flex-row items-center py-6 border-b border-[#00CCBB] relative">
+      <View className="bg-white flex-row items-center py-6 border-b border-[#0081CC] relative">
         <View className="flex-1 items-center">
           <Text className="font-bold text-lg">Baskets</Text>
           <Text className="text-xs text-gray-500">{restaurant.name}</Text>
@@ -67,7 +67,7 @@ const BasketScreen: FC<IProps> = (props) => {
             navigation.goBack();
           }}
         >
-          <XCircleIcon size={42} color="#00CCBB" />
+          <XCircleIcon size={42} color="#0081CC" />
         </TouchableOpacity>
       </View>
       <View className="bg-white flex-row space-x-4 items-center p-4 mt-4 border-y border-gray-200 ">
@@ -79,7 +79,7 @@ const BasketScreen: FC<IProps> = (props) => {
 
         <Text className="flex-1 text-gray-500">Deliver in 55-75 min</Text>
         <TouchableOpacity>
-          <PencilSquareIcon size={20} color="#00CCBB" />
+          <PencilSquareIcon size={20} color="#0081CC" />
         </TouchableOpacity>
       </View>
 
@@ -93,7 +93,7 @@ const BasketScreen: FC<IProps> = (props) => {
                 key={key}
                 className="bg-white flex-row space-x-1 items-center p-4"
               >
-                <Text className="text-[#00CCBB] font-bold">
+                <Text className="text-[#0081CC] font-bold">
                   {dishes.length} x
                 </Text>
                 <Image
@@ -107,7 +107,7 @@ const BasketScreen: FC<IProps> = (props) => {
                   {USD.format(dish.price)}
                 </Text>
                 <TouchableOpacity onPress={() => removeBasket(dish._id)}>
-                  <TrashIcon size={20} color="#00CCBB" />
+                  <TrashIcon size={20} color="#0081CC" />
                 </TouchableOpacity>
               </View>
             );
@@ -138,7 +138,7 @@ const BasketScreen: FC<IProps> = (props) => {
               navigation.navigate("PreparingOrder");
             }}
             className={`p-3 rounded-lg my-1 ${
-              baskets.length === 0 ? `bg-gray-500` : `bg-[#00CCBB]`
+              baskets.length === 0 ? `bg-gray-500` : `bg-[#0081CC]`
             }`}
           >
             <Text className="text-white font-bold text-lg text-center">
