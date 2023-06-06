@@ -7,7 +7,7 @@ import { NativeWindStyleSheet } from "nativewind";
 import { Provider } from "react-redux";
 import { store } from "./src/redux/store";
 import RestaurantScreen from "./src/screens/RestaurantScreen";
-import { RootStackParamList } from "./src/types/navigation";
+import { RootStackParamList } from "./src/helpers/navigation";
 import { Platform } from "react-native";
 
 import { setupURLPolyfill } from "react-native-url-polyfill";

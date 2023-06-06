@@ -3,7 +3,7 @@ import React, { Component, FC } from "react";
 import { useAppSelector } from "../../redux/store";
 import { USD } from "../../helpers/util";
 import { useNavigation } from "@react-navigation/native";
-import { ScreenNavigationType } from "../../types/navigation";
+import { ScreenNavigationType } from "../../helpers/navigation";
 
 interface IProps {}
 
@@ -19,9 +19,11 @@ const BasketCart: FC<IProps> = (props) => {
     <View className="absolute w-full bottom-10">
       <TouchableOpacity
         onPress={() => navigation.navigate("Basket")}
-        className="flex-row items-center justify-between bg-[#00c9bf] mx-6 p-3 border-[#00c4ba] border-2 rounded-md"
+        className={
+          "flex-row items-center justify-between bg-[#0081CC] mx-6 p-3 border-[#006cc4] border-2 rounded-md"
+        }
       >
-        <View className="bg-[#00b9b0] px-2 py-1 border-2 border-[#00b3aa] rounded-md">
+        <View className="bg-[#0075b9] px-2 py-1 border-2 border-[#0081CC] rounded-md">
           <Text className="text-white text-lg font-bold">{baskets.length}</Text>
         </View>
         <Text className="text-white text-lg font-bold">Total Basket</Text>

@@ -5,7 +5,7 @@ import { Category, Dish } from "../../redux/model";
 import { truncate } from "../../helpers/util";
 import { useNavigation } from "@react-navigation/native";
 import { urlFor } from "../../redux/sanityClient/sanity";
-import { ScreenNavigationType } from "../../types/navigation";
+import { ScreenNavigationType } from "../../helpers/navigation";
 
 interface IProps {
   id: Key;
@@ -62,13 +62,13 @@ const RestaurantCard: FC<IProps> = ({
       <View className="px-3 pb-4">
         <Text className="font-bold text-lg pt-2">{name}</Text>
         <View className="flex-row items-center space-x-1">
-          <StarIcon size={20} color="#00CCBB" opacity={0.5} />
+          <StarIcon size={20} color="#0081CC" opacity={0.5} />
           <Text className="text-sm text-gray-500">
-            <Text className="text-green-500">{rating}</Text> - {genre}
+            <Text className="text-[#0081CC]">{rating}</Text> - {genre}
           </Text>
         </View>
         <View className="flex-row items-center py-1">
-          <MapPinIcon className="" color="#00CCBB" size={20} opacity={0.5} />
+          <MapPinIcon className="" color="#0081CC" size={20} opacity={0.5} />
           <Text className="text-sm text-gray-500"> {truncate(address)}</Text>
         </View>
       </View>

@@ -10,7 +10,7 @@ import * as Animatable from "react-native-animatable";
 import { useNavigation } from "@react-navigation/native";
 import { XCircleIcon } from "react-native-heroicons/solid";
 import * as Progress from "react-native-progress";
-import { ScreenNavigationType } from "../types/navigation";
+import { ScreenNavigationType } from "../helpers/navigation";
 
 interface IProps {}
 

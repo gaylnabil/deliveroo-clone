@@ -51,7 +51,7 @@ const FeaturedRow: FC<IProps> = ({ id, name, description, restaurants }) => {
       <View className="mt-4 px-4 flex-row item-center justify-between">
         {/* <Text>{id}</Text> */}
         <Text className="font-bold text-lg">{name}</Text>
-        <ArrowRightIcon size={20} color="#00CCBB" />
+        <ArrowRightIcon size={20} color="#0081CC" />
       </View>
       <Text className="text-xs text-gray-500 px-4">{description}</Text>
       <ScrollView
