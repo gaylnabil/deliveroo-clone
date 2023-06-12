@@ -1,10 +1,13 @@
-import { View, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView, TouchableOpacity } from "react-native";
 import React, { FC, Key, useEffect } from "react";
 import { ArrowRightIcon } from "react-native-heroicons/outline";
 import RestaurantCard from "./../restaurants/RestaurantCard";
 import { Restaurant } from "../../redux/model";
-import { useAppDispatch, useAppSelector } from "../../redux/store";
-import { getFeatured } from "../../redux/actions/actionThunk";
+import { useNavigation } from "@react-navigation/native";
+import { ScreenNavigationType } from "../../helpers/navigation";
+// import { useAppDispatch, useAppSelector } from "../../redux/store";
+// import { getFeatured } from "../../redux/actions/actionThunk";
+
 interface IProps {
   id: Key;
   name: string;
@@ -13,6 +16,7 @@ interface IProps {
 }
 
 const FeaturedRow: FC<IProps> = ({ id, name, description, restaurants }) => {
+  const navigation = useNavigation<ScreenNavigationType>();
   // const dispatch = useAppDispatch();
   // const restaurants = useAppSelector(
   //   (state) => state.featuredStore.featuredSelected.restaurants
@@ -51,7 +55,17 @@ const FeaturedRow: FC<IProps> = ({ id, name, description, restaurants }) => {
       <View className="mt-4 px-4 flex-row item-center justify-between">
         {/* <Text>{id}</Text> */}
         <Text className="font-bold text-lg">{name}</Text>
-        <ArrowRightIcon size={20} color="#0081CC" />
+        {id === "" ? (
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("RestaurantList");
+            }}
+          >
+            <ArrowRightIcon size={20} color="#0081CC" />
+          </TouchableOpacity>
+        ) : (
+          <ArrowRightIcon size={20} color="#0081CC" />
+        )}
       </View>
       <Text className="text-xs text-gray-500 px-4">{description}</Text>
       <ScrollView

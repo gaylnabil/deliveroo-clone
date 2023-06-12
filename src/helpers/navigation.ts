@@ -22,6 +22,7 @@ export type AppStackParamList = {
     Basket: undefined;
     PreparingOrder: undefined;
     Delivery: undefined;
+    RestaurantList: undefined;
   };
   
 export interface RootStackParamList extends AppStackParamList {}

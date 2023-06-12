@@ -1,4 +1,10 @@
-import { ScrollView, RefreshControl, View } from "react-native";
+import {
+  ScrollView,
+  RefreshControl,
+  View,
+  TouchableOpacity,
+  Text,
+} from "react-native";
 import React, { FC, useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Categories from "../components/categories/Categories";
@@ -11,13 +17,18 @@ import {
 } from "./../redux/actions/actionThunk";
 import { setFeatures } from "../redux/slices/FeaturedSlice";
 import { setCategories } from "../redux/slices/catgorieSlice";
-import Header from "../components/layouts/Header";
-import Search from "./../components/layouts/Seearch";
 import { hideHeader } from "../helpers/util";
+import { useNavigation } from "@react-navigation/native";
+import { ScreenNavigationType } from "../helpers/navigation";
+import LayoutHeader from "../components/layouts/LayoutHeader";
+import { getRestaurants } from "../redux/actions/actionThunk";
 
 const HomeScreen: FC = () => {
   const dispatch = useAppDispatch();
   const features = useAppSelector((state) => state.featuredStore.features);
+  const restaurants = useAppSelector(
+    (state) => state.restaurantStore.restaurants
+  );
   const [refreshing, setRefreshing] = React.useState(false);
 
   hideHeader();
@@ -30,10 +41,11 @@ const HomeScreen: FC = () => {
   const getData = () => {
     dispatch(getAllCategories());
     dispatch(getAllFeatures());
+    dispatch(getRestaurants(3));
   };
 
   useEffect(() => {
-    dispatch(getAllFeatures());
+    getData();
   }, []);
 
   const onRefresh = () => {
@@ -65,13 +77,7 @@ const HomeScreen: FC = () => {
   // console.log("Features: ", features);
   return (
     <SafeAreaView className="bg-white pt-1 pb-1">
-      <View className="pb-1">
-        {/* Header */}
-        <Header />
-        {/* Search */}
-        <Search />
-        {/* Body */}
-      </View>
+      <LayoutHeader />
       <ScrollView
         className="bg-gray-100"
         refreshControl={
@@ -84,6 +90,14 @@ const HomeScreen: FC = () => {
         {/* Features rows */}
         {/* Features */}
         {featuredElements}
+
+        <FeaturedRow
+          id=""
+          name="Restaurants"
+          description={"Click the arrow to show the list of restaurants"}
+          restaurants={restaurants}
+        />
+        <View className="my-14"></View>
       </ScrollView>
     </SafeAreaView>
   );

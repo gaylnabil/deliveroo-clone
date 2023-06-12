@@ -11,8 +11,8 @@ export const hideHeader=()=>{
       }, [navigation]);
 } 
 
-export const truncate = (text: string) =>{
-    return text.length > 30 ? `${text.substring(0, 30)}...` : text;
+export const truncate = (text: string, num: number=30): string => {
+    return text.length > num ? `${text.substring(0, num)}...` : text;
   }
   
 export const USD = Intl.NumberFormat("en-US", {
