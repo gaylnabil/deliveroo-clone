@@ -11,17 +11,17 @@ import {
 import DishRow from "./../components/dishes/DishRow";
 import { urlFor } from "./../redux/sanityClient/sanity";
 import BasketCart from "../components/baskets/BasketCart";
-import { useAppDispatch, useAppSelector } from "./../redux/store";
-import { setRestaurant } from "../redux/slices/restaurantSlice";
+// import { useAppDispatch, useAppSelector } from "./../redux/store";
+// import { setRestaurant } from "../redux/slices/restaurantSlice";
 import { RestaurantScreenRouteType } from "../helpers/navigation";
 import { hideHeader } from "../helpers/util";
 
 const RestaurantScreen: FC = () => {
   const navigation = useNavigation();
-  const dispatch = useAppDispatch();
-  const restaurant = useAppSelector(
-    (state) => state.restaurantStore.restaurantSelected
-  );
+  // const dispatch = useAppDispatch();
+  // const restaurant = useAppSelector(
+  //   (state) => state.restaurantStore.restaurantSelected
+  // );
   const {
     params: {
       id,
@@ -40,23 +40,23 @@ const RestaurantScreen: FC = () => {
 
   hideHeader();
 
-  useEffect(() => {
-    dispatch(
-      setRestaurant({
-        _id: id,
-        image,
-        description,
-        name,
-        rating,
-        genre,
-        address,
-        dishes,
-        longitude,
-        latitude,
-        type,
-      })
-    );
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(
+  //     setRestaurant({
+  //       _id: id,
+  //       image,
+  //       description,
+  //       name,
+  //       rating,
+  //       genre,
+  //       address,
+  //       dishes,
+  //       longitude,
+  //       latitude,
+  //       type,
+  //     })
+  //   );
+  // }, [dispatch]);
 
   return (
     <>
@@ -118,18 +118,19 @@ const RestaurantScreen: FC = () => {
 
         {/* Dishes */}
         <View className="pb-36">
-          {dishes.map((dish, index) => {
-            return (
-              <DishRow
-                key={dish._id}
-                id={dish._id}
-                title={dish.name}
-                description={dish.description}
-                image={dish.image}
-                price={dish.price}
-              />
-            );
-          })}
+          {dishes.length > 0 &&
+            dishes.map((dish, index) => {
+              return (
+                <DishRow
+                  key={dish._id}
+                  id={dish._id}
+                  title={dish.name}
+                  description={dish.description}
+                  image={dish.image}
+                  price={dish.price}
+                />
+              );
+            })}
         </View>
       </ScrollView>
 

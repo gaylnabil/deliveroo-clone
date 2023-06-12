@@ -35,6 +35,7 @@ const RestaurantCard: FC<IProps> = ({
   type,
 }) => {
   const navigation = useNavigation<ScreenNavigationType>();
+  // console.log("ResttaurantCard image: ", image);
 
   return (
     <TouchableOpacity

@@ -14,6 +14,7 @@ import { setupURLPolyfill } from "react-native-url-polyfill";
 import BasketScreen from "./src/screens/BasketScreen";
 import PreparingOrderScreen from "./src/screens/PreparingOrderScreen";
 import DeliveryScreen from "./src/screens/DeliveryScreen";
+import RestaurantListScreen from "./src/screens/RestaurantListScreen";
 
 if (Platform.OS !== "web") {
   setupURLPolyfill();
@@ -22,7 +23,7 @@ NativeWindStyleSheet.setOutput({
   default: "native",
 });
 
-console.log("Platform OS: " + Platform.OS);
+// console.log("Platform OS: " + Platform.OS);
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
@@ -60,6 +61,14 @@ export default function App() {
             options={{
               title: "Delivery",
               presentation: "fullScreenModal",
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="RestaurantList"
+            component={RestaurantListScreen}
+            options={{
+              title: "Restaurant List",
               headerShown: false,
             }}
           />

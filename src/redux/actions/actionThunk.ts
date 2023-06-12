@@ -37,12 +37,18 @@ export const getAllFeatures = (): ThunkAction<Promise<void>, RootState, unknown,
     )
 }
 
-export const getAllRestaurants = (id: number): ThunkAction<Promise<void>, RootState, unknown, PayloadAction<Restaurant[]>> =>{
+export const getRestaurants = (limit: number=0): ThunkAction<Promise<void>, RootState, unknown, PayloadAction<Restaurant[]>> =>{
     
   return ( 
     async(dispatch: Dispatch) =>{
       try {
-        const query = `*[_type == "restaurant"] {...,}`
+        const query = `*[_type == "restaurant"] {
+          ...,
+          dishes[] ->,
+          type->{
+              ...,
+          },
+        }${limit <= 0 ? "" : `[0...${limit}]`}`
         const restaurants = await client.fetch(query)
         dispatch(setRestaurants(restaurants))
       } catch (error) {
